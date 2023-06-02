@@ -1,0 +1,28 @@
+import requests
+
+api_key = awlzVd0iSW3GUhUl
+api_secret = 'YOUR_API_SECRET'
+api_url = 'https://api.coinbase.com/v2'  # Coinbase API base URL
+
+# Example function to make a GET request to Coinbase API
+def get(endpoint):
+    url = f"{api_url}/{endpoint}"
+    headers = {
+        'CB-ACCESS-KEY': api_key,
+        'CB-ACCESS-SIGN': api_secret,
+        'CB-VERSION': '2022-01-01'  # Specify the desired API version
+    }
+
+    response = requests.get(url, headers=headers)
+
+    if response.status_code == 200:
+        return response.json()
+    else:
+        # Handle errors here
+        print(f"Request failed with status code {response.status_code}")
+        return None
+
+# Example usage: Get account information
+account_info = get('accounts')
+if account_info:
+    print(account_info)
