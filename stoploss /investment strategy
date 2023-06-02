@@ -1,0 +1,20 @@
+entry_price = 7.41  # Your initial entry price
+stop_loss_percentage = 0.10  # Stop-loss percentage
+
+# Function to calculate the dynamic stop-loss price based on the current price
+def calculate_stop_loss(current_price):
+    dynamic_stop_loss = max(entry_price * (1 - stop_loss_percentage), current_price * (1 - stop_loss_percentage))
+    return dynamic_stop_loss
+
+# Assuming you have the current price stored in the 'current_price' variable
+current_price = 7.50  # Replace this with the actual current price
+
+stop_loss_price = calculate_stop_loss(current_price)
+
+if current_price <= stop_loss_price:
+    # Execute your stop-loss order here
+    print("Stop-loss order triggered at price", current_price)
+else:
+    # Calculate the potential return percentage
+    return_percentage = (current_price - entry_price) / entry_price * 100
+    print("Current return percentage:", return_percentage)
